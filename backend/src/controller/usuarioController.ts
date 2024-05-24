@@ -21,15 +21,19 @@ class usuarioController {
             const nomeUsuario: string = nome ?? '';
             const senhaUsuario: string = senha ?? '';
 
-            const usuario: usuarioType | any = await usuarioService.findByNome(nomeUsuario);
+            // Verifica se o usuário já existe
+            let usuario: usuarioType | any = await usuarioService.findByNome(nomeUsuario);
 
             if (!usuario) {
-                console.log('Usuário não encontrado para o nome:', nome);
-                return res.status(401).json({ error: 'Nome ou senha incorretos' });
+                // Se o usuário não existir, cria um novo
+                usuario = await usuarioService.create({ nome: nomeUsuario, senha: senhaUsuario });
+                console.log('Usuário criado:', nomeUsuario);
             }
 
+            // Adiciona o usuário para autenticação (essa função precisa ser implementada)
             addUser(nomeUsuario, senhaUsuario);
-            
+
+            // Autentica o usuário
             const authenticated = authenticateUser(nomeUsuario, senhaUsuario);
 
             if (!authenticated) {
@@ -44,7 +48,6 @@ class usuarioController {
             res.status(500).json({ error: 'Erro ao processar login' });
         }
     }
-
     
 
     async findAll(req: Request, res: Response) {

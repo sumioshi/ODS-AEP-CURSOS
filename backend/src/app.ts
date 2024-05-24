@@ -16,7 +16,7 @@ class App {
 
     public middleware() {
         this.express.use(express.json());
-        this.express.use(cors());
+        this.express.use(cors({ origin: 'http://10.26.15.79:3002' })); // Especifique a origem do frontend
         this.express.use(express.static(path.join(__dirname, '../../frontend'))); // Servir arquivos estáticos da pasta frontend
     }
 
