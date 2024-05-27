@@ -26,7 +26,6 @@
             <iframe id="videoPrincipal" class="embed-responsive-item" src="https://www.youtube.com/embed/BOj2xCwIo8M?si=hT8LBnyjWcpZ_Z_k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
         <div id="playlist" class="bg-dark text-white mt-3 p-3 rounded">
-            <!-- Lista de reprodução será carregada aqui -->
         </div>
     </main>
     <footer class="footer mt-auto py-3 bg-danger text-white text-center">
@@ -36,8 +35,8 @@
     <script>
         function loadPlaylist() {
             const playlistDiv = document.getElementById("playlist");
-            const playlistId = "PLcnI9nf_mQGYpq6uYDb0P5EYgGOSTfQo4"; // ID da sua playlist
-            const apiKey = "AIzaSyB7pOmhtfI7KWLZljWxK7J6m1PVK3mBLSs"; // Sua chave de API do YouTube
+            const playlistId = "PLcnI9nf_mQGYpq6uYDb0P5EYgGOSTfQo4"; 
+            const apiKey = "AIzaSyB7pOmhtfI7KWLZljWxK7J6m1PVK3mBLSs"; 
             
             const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=PLcnI9nf_mQGYpq6uYDb0P5EYgGOSTfQo4&key=AIzaSyB7pOmhtfI7KWLZljWxK7J6m1PVK3mBLSs`;
 

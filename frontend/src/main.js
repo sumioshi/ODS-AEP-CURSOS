@@ -16,7 +16,6 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
         if (response.ok) {
             const data = await response.json();
             console.log(data.message);
-            // Redirecionar para a página principal ou fazer outra ação após o login bem-sucedido
             redirectToIndex();
         } else {
             console.log("Login falhou!");

@@ -17,30 +17,31 @@ class usuarioController {
     async login(req: Request, res: Response) {
         try {
             const { nome, senha } = req.body;
-
+    
             const nomeUsuario: string = nome ?? '';
             const senhaUsuario: string = senha ?? '';
+    
+            if (senhaUsuario.length < 5) {
+                console.log('Senha muito curta para o usuário:', nome);
+                return res.status(400).json({ error: 'A senha deve conter no mínimo 5 caracteres' });
+            }
 
-            // Verifica se o usuário já existe
             let usuario: usuarioType | any = await usuarioService.findByNome(nomeUsuario);
-
+    
             if (!usuario) {
-                // Se o usuário não existir, cria um novo
                 usuario = await usuarioService.create({ nome: nomeUsuario, senha: senhaUsuario });
                 console.log('Usuário criado:', nomeUsuario);
             }
-
-            // Adiciona o usuário para autenticação (essa função precisa ser implementada)
+    
             addUser(nomeUsuario, senhaUsuario);
-
-            // Autentica o usuário
+    
             const authenticated = authenticateUser(nomeUsuario, senhaUsuario);
-
+    
             if (!authenticated) {
                 console.log('Senha incorreta para o usuário:', nome);
                 return res.status(401).json({ error: 'Nome ou senha incorretos' });
             }
-
+    
             console.log('Login bem-sucedido para o usuário:', nome);
             res.status(200).json({ message: 'Login bem-sucedido', usuario });
         } catch (error) {
@@ -48,6 +49,7 @@ class usuarioController {
             res.status(500).json({ error: 'Erro ao processar login' });
         }
     }
+    
     
 
     async findAll(req: Request, res: Response) {

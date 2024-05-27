@@ -30,7 +30,7 @@ header {
 
 header a {
     position: absolute;
-    left: 20px; /* Ajuste o valor conforme necessário */
+    left: 20px; 
     top: 5.1%;
     transform: translateY(-50%);
 }
@@ -97,9 +97,9 @@ main {
     padding: 10px;
     overflow-y: auto;
     position: fixed;
-    top: 70px; /* Altura do cabeçalho */
-    bottom: 0; /* Se estende até o rodapé */
-    right: 0; /* Alinha à direita */
+    top: 70px;
+    bottom: 0;
+    right: 0; 
     z-index: 1;
 }
 
